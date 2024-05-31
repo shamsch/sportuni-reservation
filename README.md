@@ -23,6 +23,15 @@ pillow is a Python imaging library. It's imported as PIL in your code.
 
 > You also need to install Tesseract OCR on your system. You can download it from [here](https://tesseract-ocr.github.io/tessdoc/Installation.html) and install it. Make sure to add the path to the Tesseract executable to your system's PATH variable.
 
+## YOUR FOLDER STRUCTURE SHOULD LOOK LIKE THIS
+```bash
+.
+├── app.py
+├── credentials.json
+├── image.jpg
+├── invited.json
+└── README.md
+```
 ### TO RUN THE SCRIPT
 ```bash
 python app.py
