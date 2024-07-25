@@ -38,6 +38,16 @@ python app.py
 ```
 
 
+### WITH DOCKER
+
+> Build the docker image (only first time)
+```bash
+docker build -t sportuni-reservation .
+```
+> Run the docker container
+```bash
+docker run -v $(pwd):/app -p 80:80 sportuni-reservation
+```
 
 ## SAMPLE SCREENSHOT IMAGE
 ![image.jpg](image.jpg)
