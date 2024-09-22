@@ -9,6 +9,7 @@ from datetime import datetime
 import os.path
 import pickle
 import json
+import requests
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
@@ -118,9 +119,25 @@ def create_google_calendar_event(service, reservation, calendar_id="primary"):
     event = service.events().insert(calendarId=calendar_id, body=event, sendUpdates="all").execute()
     print(f"Event created: {event.get('htmlLink')}")
 
+def get_image_from_pasteboard(url):
+    # Convert the Pasteboard link to a direct image link
+    image_id = url.split('/')[-1]
+    direct_image_url = f"https://gcdnb.pbrd.co/images/{image_id}?o=1"
+    
+    # Fetch the image from the direct link
+    response = requests.get(direct_image_url)
+    response.raise_for_status()  # Check if the request was successful
+    
+    # Save the image to a file
+    with open("image.jpg", "wb") as f:
+        f.write(response.content)
 
 def main():
-    image_path = "image.jpg"  # Change this to your image path
+    # Prompt user to paste the URL of the image
+    url = input("Paste the URL of the image: ")
+    get_image_from_pasteboard(url)
+    image_path = "image.jpg"
+    print("Image downloaded successfully!")
 
     # Perform OCR and extract information
     text = perform_ocr(image_path)
